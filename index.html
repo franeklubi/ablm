@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Ableton Metronome</title>
+
+    <link rel="stylesheet" href="./css/master.css">
+
+    <script src="./js/Timer.js">
+        </script>
+    <script src="./js/Arrangement.js">
+        </script>
+</head>
+<body>
+    <input type="checkbox" id="darkMode">
+
+    <div class="container">
+        <div class="icon">
+            <div id="sun"></div>
+            <div id="moon"></div>
+        </div>
+        <input type="checkbox" id="selected">
+        <input type="checkbox" id="dot">
+
+        <div class="bpmBox">
+            <input type="button" value="Tap" id="tap">
+
+            <div id="signature">
+                <input type="text" id="numerator" value="4">
+                <span>/</span>
+                <select id="denominator">
+                    <option value="16">16</option>
+                    <option value="8">8</option>
+                    <option value="4" selected>4</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+            <input type="text" id="bpm" value="120">
+        </div>
+
+        <div class="arrangementBox">
+            <input type="text" value="1. 1. 1" id="position" readonly>
+        </div>
+
+        <div class="metronome">
+            <div class="dot dot1"></div>
+            <div class="dot dot2"></div>
+        </div>
+
+        <div class="menu">
+            <div class="sound">
+                Sound:
+                <ul>
+                    <li>
+                        <input type="radio" name="soundGroup" value="Classic"
+                            checked>
+                        <span class="checkmark"></span>
+                        <label>Classic</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="soundGroup" value="Click">
+                        <span class="checkmark"></span>
+                        <label>Click</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="soundGroup" value="Wood">
+                        <span class="checkmark"></span>
+                        <label>Wood</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="./js/script.js">
+        </script>
+</body>
+</html>

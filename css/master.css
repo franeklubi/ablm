@@ -1,0 +1,367 @@
+
+.container {
+    --background: #6e6e6e;
+    --main: #969696;
+    --highlighted: #b1b1b1;
+    --dot: black;
+    --menu-background: #c3c3c3;
+    --menu-text: var(--dot);
+
+    --dark-background: #373737;
+    --dark: #282828;
+    --dark-highlighted: #5f5f5f;
+    --dark-dot: #d2d2d2;
+    --dark-menu-background: #323232;
+    --dark-menu-text: var(--dark-dot);
+
+    --selected: #ffb532;
+    --selected-highlighted: #ffc867;
+    --selected-dot: black;
+}
+
+body {
+    margin: 0;
+	font-family: Arial;
+}
+
+.container {
+    background-color: var(--background);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+    transition: all 0.2s ease-out;
+}
+
+.container * {
+    transition: inherit;
+}
+
+.bpmBox {
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+
+    width: 15rem;
+    height: 2rem;
+}
+
+.bpmBox #bpm {
+    height: 100%;
+    width: 30%;
+
+    border-radius: 0;
+
+    box-sizing: border-box;
+    border: 0.2rem solid var(--background);
+    border-right: none;
+    border-top: none;
+
+    text-align: center;
+    font-size: 1rem;
+
+    background-color: var(--main);
+    color: var(--menu-text);
+}
+
+.bpmBox #bpm:hover {
+    background-color: var(--highlighted);
+}
+
+.bpmBox #signature {
+    height: 100%;
+    width: 40%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    border: 0.2rem solid var(--background);
+    border-right: none;
+    border-top: none;
+
+    background-color: var(--main);
+    color: var(--menu-text);
+}
+
+.bpmBox #signature input {
+    width: 1.5rem;
+    height: 1.5rem;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 1rem;
+
+    border-radius: 0;
+
+    box-sizing: border-box;
+
+    background-color: var(--main);
+    color: var(--menu-text);
+    border: none;
+
+    text-align: center;
+}
+
+.bpmBox #signature select {
+    width: 1.5rem;
+    height: 1.5rem;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 1rem;
+
+    border-radius: 0;
+
+    box-sizing: border-box;
+
+    background-color: var(--main);
+    color: var(--menu-text);
+    border: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.bpmBox #signature select::-ms-expand {
+    display: none;
+}
+
+.bpmBox #signature input:hover {
+    background-color: var(--highlighted);
+}
+
+.bpmBox #tap {
+    height: 100%;
+    width: 30%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 0.2rem solid var(--background);
+
+    text-align: center;
+    font-size: 1rem;
+
+    background-color: var(--main);
+    color: var(--menu-text);
+}
+
+.bpmBox #tap:hover {
+    background-color: var(--highlighted);
+}
+
+.arrangementBox {
+    width: 15rem;
+    height: 2rem;
+
+    background-color: var(--main);
+    color: var(--menu-text);
+
+    box-sizing: border-box;
+    border-bottom: 0.2rem solid var(--background);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.arrangementBox #position {
+    background-color: var(--main);
+    color: var(--menu-text);
+
+    width: auto;
+    text-align: center;
+    font-size: 1rem;
+    border-width: 0;
+}
+
+.metronome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 15rem;
+    height: 10rem;
+
+    background-color: var(--main);
+}
+
+.metronome:hover {
+    background-color: var(--highlighted);
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--menu-background);
+    color: var(--menu-text);
+
+    width: 15rem;
+}
+
+.menu > * {
+    padding: 1rem 0.4rem;
+}
+
+.menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+}
+
+#darkMode {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    opacity: 0;
+
+    z-index: 2;
+
+    width: 3rem;
+    height: 3rem;
+}
+
+#darkMode:hover ~ .container .icon #sun {
+    opacity: 0.8;
+}
+
+#darkMode:checked ~ .container .icon #sun {
+    background-color: var(--dark-dot);
+}
+
+#darkMode:checked ~ .container .icon #moon {
+    background-color: var(--dark-background);
+    transform: translateX(0.5rem) translateY(-0.2rem);
+    opacity: 1;
+}
+
+/* change the colour palette */
+#darkMode:checked ~ .container {
+    --background: var(--dark-background);
+    --main: var(--dark);
+    --highlighted: var(--dark-highlighted);
+    --dot: var(--dark-dot);
+    --menu-background: var(--dark-menu-background);
+    --menu-text: var(--dark-menu-text);
+}
+
+.icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 3rem;
+    height: 3rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon * {
+    width: 2rem;
+    height: 2rem;
+
+    border-radius: 50%;
+}
+
+.icon #sun {
+    background-color: var(--selected-highlighted);
+}
+
+.icon #moon {
+    position: absolute;
+
+    background-color: var(--background);
+
+    transform: translateX(2rem) translateY(-0.8rem);
+
+    opacity: 0;
+}
+
+.dot {
+    transition: none;
+
+    width: 4rem;
+    height: 4rem;
+
+    border-radius: 50%;
+    border: 0.5rem solid var(--dot);
+
+}
+
+.dot1 {
+    background-color: var(--dot);
+}
+
+.dot2 {
+    margin-left: 1rem;
+    background-color: inherit;
+}
+
+#dot {
+    display: none;
+}
+
+#dot:checked ~ .metronome > .dot1 {
+    background-color: inherit;
+}
+
+#dot:checked ~ .metronome > .dot2 {
+    background-color: var(--dot);
+}
+
+#selected {
+    display: none;
+}
+
+#selected:checked ~ .metronome {
+    background-color: var(--selected);
+}
+
+#selected:checked ~ .metronome:hover {
+    background-color: var(--selected-highlighted);
+}
+
+#selected:checked ~ .metronome > .dot {
+    border-color: var(--selected-dot);
+}
+
+#selected:checked ~ .metronome > .dot1 {
+    background-color: var(--selected-dot);
+}
+
+#selected:checked ~ #dot:checked ~ .metronome > .dot1 {
+    background-color: inherit;
+}
+
+#selected:checked ~ #dot:checked ~ .metronome > .dot2 {
+    background-color: var(--selected-dot);
+}
