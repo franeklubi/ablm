@@ -15,6 +15,8 @@ const selected_element = document.getElementById('selected');
 const bpm_element = document.getElementById('bpm');
 const dot_element = document.getElementById('dot');
 
+let volume = 1;
+
 // loadSounds loads all the metronome sounds
 function loadSounds() {
     let cla_p = new Audio("assets/classic_p.wav");
@@ -85,12 +87,22 @@ function addListeners() {
 
     numerator_element.oninput = () => {
         numerator_element.value = numerator_element.value.replace(/\D/g, '');
-        if ( numerator_element.value == '' ) {
-            numerator_element.value = 4;
-        }
+
+        /* Removed this because it prevented the user from changing the numerator
+         * And it does not break the code
+        */
+        // if ( numerator_element.value == '' ) {
+        //     numerator_element.value = 4;
+        // }
 
         numerator_element.value;
     }
+
+    //listen for volume changes
+    document.getElementById('volumeController').addEventListener('input', function() {
+
+        volume = getVolume()
+      });
 }
 
 // updateArrangementPosition does exactly what is sounds like
@@ -136,6 +148,17 @@ function tapLogic() {
     }
 }
 
+function getVolume(){
+    let slider = document.getElementById('volumeController');
+    let level = document.getElementById("volumeLevel")
+
+    let curr_volume = slider.value;  
+
+    //side-effect -> Update current Volume percentage on screen
+    level.innerHTML = curr_volume + "%"
+
+    return curr_volume / 100
+}
 
 function main() {
     let sounds = loadSounds();
@@ -151,11 +174,13 @@ function main() {
         // probably stay in this form forever, unless someone wants to do a PR
         if ( arrangement.pos % 4 == 0 ) {
             dot_element.checked = !dot_element.checked;
-            if ( ( arrangement.pos / (16/denominator_element.value) )
-                % numerator_element.value == 0 ) {
+            if ( ( arrangement.pos / (16 / denominator_element.value) )
+                % numerator_element.value == 0 ) { //Play the Downbeat(1)
                 sounds[selectedSound(sound_radios_element)][0].play();
-            } else {
+                sounds[selectedSound(sound_radios_element)][0].volume = volume;
+            } else { //play subsequent beats(2,3,4)
                 sounds[selectedSound(sound_radios_element)][1].play();
+                sounds[selectedSound(sound_radios_element)][1].volume = volume;
             }
         }
 
@@ -169,4 +194,6 @@ function main() {
     addListeners();
 }
 
-main();
+window.onload= (event)=>{
+    main();
+}
