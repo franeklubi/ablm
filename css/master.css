@@ -41,6 +41,10 @@ body {
     transition: inherit;
 }
 
+.volumeController{
+    color: var(--menu-text);
+}
+
 .bpmBox {
     padding: 0;
     margin: 0;
